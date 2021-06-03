@@ -1,5 +1,7 @@
 package com.cartisan.code;
 
+import com.cartisan.code.utils.JavaTypes;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -53,6 +55,9 @@ public class CodeApplication {
                     final ResultSet primaryKeys = metaData.getPrimaryKeys(databaseName, username, tableName);
 
                     while (columns.next()){
+                        final String remarks = columns.getString("REMARKS");
+                        final String columnName = columns.getString("COLUMN_NAME");
+                        final String javaType = JavaTypes.getType(columns.getInt("DATA_TYPE"));
 
                     }
                 }

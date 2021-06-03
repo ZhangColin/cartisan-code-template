@@ -1,5 +1,6 @@
 package com.cartisan.code.utils;
 
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -10,6 +11,10 @@ public class StringUtils {
 
     public static String firstUpper(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public static String firstLower(String str) {
+        return str.substring(0, 1).toLowerCase() + str.substring(1);
     }
 
     public static String replacePrefix(String str) {
