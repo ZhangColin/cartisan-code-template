@@ -3,17 +3,15 @@ package ${package}.${module};
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * @author colin
- */
+<#list importTypes as type>
+import ${type};
+</#list>
+
 @Data
-public class RoleDto {
-    @ApiModelProperty(value = "角色Id")
-    private String id;
+public class ${Module}Dto {
+    <#list fields as field>
+    @ApiModelProperty(value = "${field.desc}")
+    private ${field.simpleType} ${field.name};
 
-    @ApiModelProperty(value = "角色名称")
-    private String name;
-
-    @ApiModelProperty(value = "状态")
-    private Integer status;
+    </#list>
 }

@@ -1,6 +1,6 @@
 package com.cartisan.code.utils;
 
-import java.util.Locale;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,4 +31,39 @@ public class StringUtils {
     public static String convertPascal(String str) {
         return Stream.of(str.split("_")).map(StringUtils::firstUpper).collect(Collectors.joining());
     }
+
+    public static String convertCamelModule(String tableName){
+        final String str = replacePrefix(tableName);
+        if (!str.contains("_")){
+            return Inflector.singularize(str);
+        }
+
+        final String[] split = str.split("_");
+
+        return firstLower(split[0])+
+                Arrays.stream(split).skip(1).limit(split.length-2).map(StringUtils::firstUpper).collect(Collectors.joining())+
+                firstUpper(Inflector.singularize(split[split.length-1]));
+    }
+
+    public static String convertPascalModule(String tableName){
+        final String str = replacePrefix(tableName);
+        if (!str.contains("_")){
+            return firstUpper(Inflector.singularize(str));
+        }
+
+        final String[] split = str.split("_");
+
+        return firstUpper(split[0])+
+                Arrays.stream(split).skip(1).limit(split.length-2).map(StringUtils::firstUpper).collect(Collectors.joining())+
+                        firstUpper(Inflector.singularize(split[split.length-1]));
+    }
+
+    public static String convertCamelModules(String tableName){
+        return convertCamel(replacePrefix(tableName));
+    }
+
+    public static String convertPascalModules(String tableName){
+        return convertPascal(replacePrefix(tableName));
+    }
+
 }

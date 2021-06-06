@@ -17,10 +17,7 @@ import java.util.List;
 
 import static com.cartisan.responses.ResponseUtil.success;
 
-/**
- * @author colin
- */
-@Api(tags = "${modelName}：${tableRemarks}")
+@Api(tags = "${serviceName}：${moduleName}")
 @RestController
 @RequestMapping("/${modules}")
 @Validated
@@ -32,7 +29,7 @@ public class ${Module}Controller {
         this.service = service;
     }
 
-    @ApiOperation(value = "搜索${tableRemarks}")
+    @ApiOperation(value = "搜索${moduleName}")
     @GetMapping("/search")
     public ResponseEntity<PageResult<${Module}Dto>> search${Modules}(
             @ApiParam(value = "查询参数") ${Module}Query ${module}Query,
@@ -40,31 +37,31 @@ public class ${Module}Controller {
         return success(service.search${Modules}(${module}Query, pageable));
     }
 
-    @ApiOperation(value = "获取${tableRemarks}")
+    @ApiOperation(value = "获取${moduleName}")
     @GetMapping("/{id}")
-    public ResponseEntity<${Module}Dto> get${Module}(@ApiParam(value = "${tableRemarks}Id", required = true) @PathVariable Long id){
+    public ResponseEntity<${Module}Dto> get${Module}(@ApiParam(value = "${moduleName}Id", required = true) @PathVariable Long id){
         return success(service.get${Module}(id));
     }
 
-    @ApiOperation(value = "添加${tableRemarks}")
+    @ApiOperation(value = "添加${moduleName}")
     @PostMapping
     public ResponseEntity<${Module}Dto> add${Module}(
-            @ApiParam(value = "${tableRemarks}信息", required = true) @Validated @RequestBody ${Module}Param ${module}Param) {
+            @ApiParam(value = "${moduleName}信息", required = true) @Validated @RequestBody ${Module}Param ${module}Param) {
         return success(service.add${Module}(${module}Param));
     }
 
-    @ApiOperation(value = "编辑${tableRemarks}")
+    @ApiOperation(value = "编辑${moduleName}")
     @PutMapping("/{id}")
     public ResponseEntity<${Module}Dto> edit${Module}(
-            @ApiParam(value = "${tableRemarks}Id", required = true) @PathVariable Long id,
-            @ApiParam(value = "${tableRemarks}信息", required = true) @Validated @RequestBody ${Module}Param ${module}Param) {
+            @ApiParam(value = "${moduleName}Id", required = true) @PathVariable Long id,
+            @ApiParam(value = "${moduleName}信息", required = true) @Validated @RequestBody ${Module}Param ${module}Param) {
         return success(service.edit${Module}(id, ${module}Param));
     }
 
-    @ApiOperation(value = "删除${tableRemarks}")
+    @ApiOperation(value = "删除${moduleName}")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remove${Module}(
-            @ApiParam(value = "${tableRemarks}Id", required = true) @PathVariable Long id) {
+            @ApiParam(value = "${moduleName}Id", required = true) @PathVariable Long id) {
         service.remove${Module}(id);
         return success();
     }

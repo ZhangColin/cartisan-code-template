@@ -39,9 +39,6 @@ public class InflectorTest {
         System.out.println(Inflector.singularize("boxes"));
         System.out.println(Inflector.singularize("tomatoes"));
         System.out.println(Inflector.singularize("Tomatoes"));
-
-        System.out.println(Inflector.singularize("RuleAndReplacements"));
-        System.out.println(Inflector.singularize("rule_and_replacements"));
     }
 
     @Test
