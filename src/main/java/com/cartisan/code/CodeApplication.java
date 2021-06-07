@@ -51,9 +51,6 @@ public class CodeApplication {
                 final String databaseName = conn.getCatalog();
                 final ResultSet tables = metaData.getTables(databaseName, "%", "%", new String[]{"TABLE"});
 
-
-
-
                 while (tables.next()){
                     final String tableName = tables.getString("TABLE_NAME");
                     if (tableName.startsWith("schema")){
@@ -102,7 +99,7 @@ public class CodeApplication {
                         field.setSimpleType(JavaTypes.simpleName(javaType));
                         field.setName(StringUtils.convertCamel(columnName));
                         field.setColumn(columnName);
-                        field.setUpperName(StringUtils.firstUpper(columnName));
+                        field.setUpperName(StringUtils.convertPascal(columnName));
                         field.setDesc(remarks);
                         final boolean isKey = "id".equals(columnName);
                         field.setId(isKey);
