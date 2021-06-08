@@ -38,9 +38,16 @@ public class CodeApplication {
         try {
             final String username = properties.getProperty("username");
             final String password = properties.getProperty("password");
-            final Connection conn = DriverManager.getConnection(properties.getProperty("url"),
-                    username,
-                    password);
+
+            final Properties prop = new Properties();
+            prop.setProperty("user", username);
+            prop.setProperty("password", password);
+            prop.setProperty("remarks", "true");
+            prop.setProperty("useInformationSchema", "true");
+
+            final Connection conn = DriverManager.getConnection(CodeApplication.properties.getProperty("url"),
+                    prop);
+
 
             final DatabaseMetaData metaData = conn.getMetaData();
 
@@ -57,14 +64,14 @@ public class CodeApplication {
                         continue;
                     }
 
-                    final List<String> configTables = asList(Optional.ofNullable(properties.getProperty("tables")).orElse(",").split("\\,"));
+                    final List<String> configTables = asList(Optional.ofNullable(CodeApplication.properties.getProperty("tables")).orElse(",").split("\\,"));
                     if (configTables.size()>0 && !configTables.contains(tableName)){
                         continue;
                     }
 
                     Map<String, Object> modelMap = new HashMap<>();
-                    modelMap.put("serviceName", properties.getProperty("serviceName"));
-                    modelMap.put("package", properties.getProperty("package"));
+                    modelMap.put("serviceName", CodeApplication.properties.getProperty("serviceName"));
+                    modelMap.put("package", CodeApplication.properties.getProperty("package"));
 
                     modelMap.put("tableName", tableName);
 
