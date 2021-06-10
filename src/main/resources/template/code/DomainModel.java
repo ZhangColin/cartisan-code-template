@@ -33,16 +33,13 @@ public class ${Module} extends AbstractEntity implements AggregateRoot {
     </#list>
     private ${Module}() {}
 
-    public ${Module}(<#list fields as field><#if field.id><#if !field.identity>${field.simpleType} ${field.name}<#if field_has_next>,
-        </#if></#if><#else>${field.simpleType} ${field.name}<#if field_has_next>,
-        </#if></#if></#list>) {
+    public ${Module}(<#list fields as field><#if field.id><#if !field.identity>${field.simpleType} ${field.name}<#if field_has_next>, </#if></#if><#else>${field.simpleType} ${field.name}<#if field_has_next>, </#if></#if></#list>) {
         <#list fields as field>
         <#if field.id><#if !field.identity>this.${field.name} = ${field.name};</#if><#else>this.${field.name} = ${field.name};</#if>
         </#list>
     }
 
-    public void describe(<#list fields as field><#if !field.id>${field.simpleType} ${field.name}<#if field_has_next>,
-        </#if></#if></#list>) {
+    public void describe(<#list fields as field><#if !field.id>${field.simpleType} ${field.name}<#if field_has_next>, </#if></#if></#list>) {
         <#list fields as field><#if !field.id>
         this.${field.name} = ${field.name};
         </#if>

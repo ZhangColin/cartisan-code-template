@@ -1,0 +1,41 @@
+### 搜索${moduleName}
+GET http://{{host}}:{{port}}/${modules}/search?name=&status=&page=0&size=10
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Authorization: {{auth_token}}
+
+### 获取${moduleName}
+GET http://{{host}}:{{port}}/${modules}/1
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Authorization: {{auth_token}}
+
+### 添加${moduleName}
+POST http://{{host}}:{{port}}/${modules}
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Authorization: {{auth_token}}
+
+{
+  <#list fields as field>
+  <#if !field.id>"${field.name}": ""<#if field_has_next>,</#if></#if>
+  </#list>
+}
+
+### 编辑${moduleName}
+PUT http://{{host}}:{{port}}/${modules}/1
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Authorization: {{auth_token}}
+
+{
+  <#list fields as field>
+  <#if !field.id>"${field.name}": ""<#if field_has_next>,</#if></#if>
+  </#list>
+}
+
+### 删除${moduleName}
+DELETE http://{{host}}:{{port}}/${modules}/1
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Authorization: {{auth_token}}

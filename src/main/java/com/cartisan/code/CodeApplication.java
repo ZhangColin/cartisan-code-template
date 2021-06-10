@@ -146,6 +146,10 @@ public class CodeApplication {
                     BuilderFactory.builder(modelMap, "/template/code", "Repository.java",
                             ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
                             "Repository.java");
+
+                    BuilderFactory.builder(modelMap, "/template/api", "Api.http",
+                            ("/api/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ".Http");
                 }
             }
 
