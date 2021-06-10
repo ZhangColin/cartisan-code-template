@@ -150,6 +150,10 @@ public class CodeApplication {
                     BuilderFactory.builder(modelMap, "/template/api", "Api.http",
                             ("/api/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
                             ".Http");
+
+                    BuilderFactory.builder(modelMap, "/template/vue", "UI.vue",
+                            ("/vue/"+ modelMap.get("module")).replace(".", "/"),
+                            ".vue");
                 }
             }
 
