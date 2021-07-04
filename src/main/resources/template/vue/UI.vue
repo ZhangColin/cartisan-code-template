@@ -73,7 +73,7 @@ import { PaginationMixin } from '@/mixins/pagination-mixin'
 import { CudMixin } from '@/mixins/cud-mixin'
 
 export default {
-  name: 'Role',
+  name: '${Module}',
   mixins: [PaginationMixin, CudMixin],
   data() {
     return {
