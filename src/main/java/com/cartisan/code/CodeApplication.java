@@ -45,8 +45,7 @@ public class CodeApplication {
             prop.setProperty("remarks", "true");
             prop.setProperty("useInformationSchema", "true");
 
-            final Connection conn = DriverManager.getConnection(CodeApplication.properties.getProperty("url"),
-                    prop);
+            final Connection conn = DriverManager.getConnection(CodeApplication.properties.getProperty("url"), prop);
 
 
             final DatabaseMetaData metaData = conn.getMetaData();
@@ -123,43 +122,43 @@ public class CodeApplication {
                     }
 
                     BuilderFactory.builder(modelMap, "/template/code", "Controller.java",
-                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             "Controller.java");
 
                     BuilderFactory.builder(modelMap, "/template/code", "AppService.java",
-                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             "AppService.java");
 
                     BuilderFactory.builder(modelMap, "/template/code", "Converter.java",
-                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             "Converter.java");
 
                     BuilderFactory.builder(modelMap, "/template/code", "DomainModel.java",
-                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             ".java");
 
                     BuilderFactory.builder(modelMap, "/template/code", "Dto.java",
-                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             "Dto.java");
 
                     BuilderFactory.builder(modelMap, "/template/code", "Param.java",
-                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             "Param.java");
 
                     BuilderFactory.builder(modelMap, "/template/code", "Query.java",
-                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             "Query.java");
 
                     BuilderFactory.builder(modelMap, "/template/code", "Repository.java",
-                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             "Repository.java");
 
                     BuilderFactory.builder(modelMap, "/template/api", "Api.http",
-                            ("/api/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/api/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             ".Http");
 
                     BuilderFactory.builder(modelMap, "/template/vue", "UI.vue",
-                            ("/vue/"+ modelMap.get("module")).replace(".", "/"),
+                            ("/vue/"+ modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
                             ".vue");
                 }
             }
