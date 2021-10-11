@@ -1,7 +1,7 @@
 package ${package}.${module};
 
-import com.cartisan.domains.AbstractEntity;
-import com.cartisan.domains.AggregateRoot;
+import com.cartisan.domain.AbstractEntity;
+import com.cartisan.domain.AggregateRoot;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.hibernate.annotations.Fetch;
@@ -20,7 +20,6 @@ import static java.util.stream.Collectors.toList;
 @Entity
 @Table(name = "${tableName}")
 @Getter
-@EqualsAndHashCode(callSuper = true)
 public class ${Module} extends AbstractEntity implements AggregateRoot {
     <#list fields as field>
     <#if field.id>
@@ -31,7 +30,7 @@ public class ${Module} extends AbstractEntity implements AggregateRoot {
     private ${field.simpleType} ${field.name};
 
     </#list>
-    private ${Module}() {}
+    protected ${Module}() {}
 
     public ${Module}(<#list fields as field><#if field.id><#if !field.identity>${field.simpleType} ${field.name}<#if field_has_next>, </#if></#if><#else>${field.simpleType} ${field.name}<#if field_has_next>, </#if></#if></#list>) {
         <#list fields as field>
