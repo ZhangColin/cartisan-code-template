@@ -16,6 +16,8 @@ public class JavaTypes {
                 return "java.lang.Long";
             case 6:
                 return "java.lang.Float";
+            case -7:
+                return "java.lang.Boolean";
             case 8:
                 return "java.lang.Double";
             case 1:
