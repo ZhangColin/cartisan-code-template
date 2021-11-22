@@ -20,7 +20,7 @@
       highlight-current-row
     >
       <#list fields as field>
-      <el-table-column align="center" label="${field.desc}" prop="${field.name}" />
+      <el-table-column align="center" label="${field.desc}" prop="${field.camelName}" />
       </#list>
       <el-table-column align="center" label="操作" width="120">
         <template slot-scope="scope">
@@ -54,8 +54,8 @@
       <div class="drawer__content">
         <el-form ref="entityDataForm" :model="entityData" :rules="rules" label-width="120px">
           <#list fields as field>
-          <#if !field.id><el-form-item label="${field.desc}" prop="${field.name}">
-             <el-input v-model="entityData.${field.name}" />
+          <#if !field.id><el-form-item label="${field.desc}" prop="${field.camelName}">
+             <el-input v-model="entityData.${field.camelName}" />
            </el-form-item></#if>
           </#list>
         </el-form>
@@ -73,7 +73,7 @@ import { PaginationMixin } from '@/mixins/pagination-mixin'
 import { CudMixin } from '@/mixins/cud-mixin'
 
 export default {
-  name: '${Module}',
+  name: '${pascalModule}',
   mixins: [PaginationMixin, CudMixin],
   data() {
     return {
@@ -81,7 +81,7 @@ export default {
 
       defaultData: {
         <#list fields as field>
-        <#if !field.id>${field.name}: ''<#if field_has_next>,</#if></#if>
+        <#if !field.id>${field.camelName}: ''<#if field_has_next>,</#if></#if>
         </#list>
       },
       title: '${moduleName}',

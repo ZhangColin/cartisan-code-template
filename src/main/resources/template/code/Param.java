@@ -1,4 +1,4 @@
-package ${package}.${module};
+package ${packageName}.${camelModule};
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,10 +13,10 @@ import ${type};
 </#list>
 
 @Data
-public class ${Module}Param {
+public class ${pascalModule}Param {
     <#list fields as field><#if !field.id>
     @ApiModelProperty(value = "${field.desc}")
-    private ${field.simpleType} ${field.name};
+    private ${field.simpleType} ${field.camelName};
 
     </#if>
     </#list>

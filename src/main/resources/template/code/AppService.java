@@ -1,4 +1,4 @@
-package ${package}.${module};
+package ${packageName}.${camelModule};
 
 import com.cartisan.constant.CodeMessage;
 import com.cartisan.dto.PageResult;
@@ -21,54 +21,54 @@ import static com.cartisan.util.AssertionUtil.requirePresent;
 import static java.util.stream.Collectors.toList;
 
 @Service
-public class ${Module}AppService {
-    private final ${Module}Repository repository;
+public class ${pascalModule}AppService {
+    private final ${pascalModule}Repository repository;
     <#if !isAutoincrement>
     private final SnowflakeIdWorker idWorker;
     </#if>
 
-    private final ${Module}Converter converter = ${Module}Converter.CONVERTER;
+    private final ${pascalModule}Converter converter = ${pascalModule}Converter.CONVERTER;
 
-    public ${Module}AppService(${Module}Repository repository<#if !isAutoincrement>, SnowflakeIdWorker idWorker</#if>) {
+    public ${pascalModule}AppService(${pascalModule}Repository repository<#if !isAutoincrement>, SnowflakeIdWorker idWorker</#if>) {
         this.repository = repository;
         <#if !isAutoincrement>
         this.idWorker = idWorker;
         </#if>
     }
 
-    public PageResult<${Module}Dto> search${Modules}(@NonNull ${Module}Query ${module}Query, @NonNull Pageable pageable) {
-        final Page<${Module}> searchResult = repository.findAll(querySpecification(${module}Query),
+    public PageResult<${pascalModule}Dto> search${Modules}(@NonNull ${pascalModule}Query ${camelModule}Query, @NonNull Pageable pageable) {
+        final Page<${pascalModule}> searchResult = repository.findAll(querySpecification(${camelModule}Query),
                 PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 
         return new PageResult<>(searchResult.getTotalElements(), searchResult.getTotalPages(),
                 converter.convert(searchResult.getContent()));
     }
 
-    public ${Module}Dto get${Module}(Long id) {
+    public ${pascalModule}Dto get${pascalModule}(Long id) {
         return converter.convert(requirePresent(repository.findById(id)));
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public ${Module}Dto add${Module}(${Module}Param ${module}Param) {
-        final ${Module} ${module} = new ${Module}(<#list fields as field><#if field.id><#if !field.identity>idWorker.nextId()<#if field_has_next>,
-        </#if></#if><#else>${module}Param.get${field.upperName}()<#if field_has_next>,
+    public ${pascalModule}Dto add${pascalModule}(${pascalModule}Param ${camelModule}Param) {
+        final ${pascalModule} ${camelModule} = new ${pascalModule}(<#list fields as field><#if field.id><#if !field.identity>idWorker.nextId()<#if field_has_next>,
+        </#if></#if><#else>${camelModule}Param.get${field.upperName}()<#if field_has_next>,
         </#if></#if></#list>);
 
-        return converter.convert(repository.save(${module}));
+        return converter.convert(repository.save(${camelModule}));
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public ${Module}Dto edit${Module}(Long id, ${Module}Param ${module}Param) {
-        final ${Module} ${module} = requirePresent(repository.findById(id));
+    public ${pascalModule}Dto edit${pascalModule}(Long id, ${pascalModule}Param ${camelModule}Param) {
+        final ${pascalModule} ${camelModule} = requirePresent(repository.findById(id));
 
-        ${module}.describe(<#list fields as field><#if !field.id>${module}Param.get${field.upperName}()<#if field_has_next>,
+        ${camelModule}.describe(<#list fields as field><#if !field.id>${camelModule}Param.get${field.upperName}()<#if field_has_next>,
         </#if></#if></#list>);
 
-        return converter.convert(repository.save(${module}));
+        return converter.convert(repository.save(${camelModule}));
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void remove${Module}(long id) {
+    public void remove${pascalModule}(long id) {
         repository.deleteById(id);
     }
 }

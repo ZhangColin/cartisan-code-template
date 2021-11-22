@@ -1,17 +1,17 @@
-package ${package}.${module};
+package ${packageName}.${camelModule};
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-<#list importTypes as type>
-import ${type};
-</#list>
+//<#list importTypes as type>
+//import ${type};
+//</#list>
 
 @Data
-public class ${Module}Dto {
+public class ${pascalModule}Dto {
     <#list fields as field>
-    @ApiModelProperty(value = "${field.desc}")
-    private ${field.simpleType} ${field.name};
+    @ApiModelProperty(value = "${field.description}")
+    private ${field.type} ${field.camelName};
 
     </#list>
 }

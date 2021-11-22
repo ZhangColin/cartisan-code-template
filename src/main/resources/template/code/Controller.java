@@ -1,4 +1,4 @@
-package ${package}.${module};
+package ${packageName}.${camelModule};
 
 import com.cartisan.constant.CodeMessage;
 import com.cartisan.dto.PageResult;
@@ -22,47 +22,47 @@ import static com.cartisan.response.ResponseUtil.success;
 @RequestMapping("/${modules}")
 @Validated
 @Slf4j
-public class ${Module}Controller {
-    private final ${Module}AppService service;
+public class ${pascalModule}Controller {
+    private final ${pascalModule}AppService service;
 
-    public ${Module}Controller(${Module}AppService service) {
+    public ${pascalModule}Controller(${pascalModule}AppService service) {
         this.service = service;
     }
 
     @ApiOperation(value = "搜索${moduleName}")
     @GetMapping("/search")
-    public ResponseEntity<PageResult<${Module}Dto>> search${Modules}(
-            @ApiParam(value = "查询参数") ${Module}Query ${module}Query,
+    public ResponseEntity<PageResult<${pascalModule}Dto>> search${Modules}(
+            @ApiParam(value = "查询参数") ${pascalModule}Query ${camelModule}Query,
             @PageableDefault Pageable pageable) {
-        return success(service.search${Modules}(${module}Query, pageable));
+        return success(service.search${Modules}(${camelModule}Query, pageable));
     }
 
     @ApiOperation(value = "获取${moduleName}")
     @GetMapping("/{id}")
-    public ResponseEntity<${Module}Dto> get${Module}(@ApiParam(value = "${moduleName}Id", required = true) @PathVariable Long id){
-        return success(service.get${Module}(id));
+    public ResponseEntity<${pascalModule}Dto> get${pascalModule}(@ApiParam(value = "${moduleName}Id", required = true) @PathVariable Long id){
+        return success(service.get${pascalModule}(id));
     }
 
     @ApiOperation(value = "添加${moduleName}")
     @PostMapping
-    public ResponseEntity<${Module}Dto> add${Module}(
-            @ApiParam(value = "${moduleName}信息", required = true) @Validated @RequestBody ${Module}Param ${module}Param) {
-        return success(service.add${Module}(${module}Param));
+    public ResponseEntity<${pascalModule}Dto> add${pascalModule}(
+            @ApiParam(value = "${moduleName}信息", required = true) @Validated @RequestBody ${pascalModule}Param ${camelModule}Param) {
+        return success(service.add${pascalModule}(${camelModule}Param));
     }
 
     @ApiOperation(value = "编辑${moduleName}")
     @PutMapping("/{id}")
-    public ResponseEntity<${Module}Dto> edit${Module}(
+    public ResponseEntity<${pascalModule}Dto> edit${pascalModule}(
             @ApiParam(value = "${moduleName}Id", required = true) @PathVariable Long id,
-            @ApiParam(value = "${moduleName}信息", required = true) @Validated @RequestBody ${Module}Param ${module}Param) {
-        return success(service.edit${Module}(id, ${module}Param));
+            @ApiParam(value = "${moduleName}信息", required = true) @Validated @RequestBody ${pascalModule}Param ${camelModule}Param) {
+        return success(service.edit${pascalModule}(id, ${camelModule}Param));
     }
 
     @ApiOperation(value = "删除${moduleName}")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove${Module}(
+    public ResponseEntity<?> remove${pascalModule}(
             @ApiParam(value = "${moduleName}Id", required = true) @PathVariable Long id) {
-        service.remove${Module}(id);
+        service.remove${pascalModule}(id);
         return success();
     }
 }

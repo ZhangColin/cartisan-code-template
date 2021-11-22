@@ -31,3 +31,4 @@ spy.log
 
 application-local.yml
 rest-client.private.env.json
+generate

@@ -1,5 +1,6 @@
 package com.cartisan.code.builder;
 
+import com.cartisan.code.domain.EntityData;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -7,7 +8,6 @@ import freemarker.template.TemplateException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * @author colin
@@ -22,9 +22,9 @@ public class TemplateUtil {
         return template;
     }
 
-    public static void writer(Template template, Map dataModel, String file) throws IOException, TemplateException {
+    public static void writer(Template template, EntityData entityData, String file) throws IOException, TemplateException {
         final FileWriter fileWriter = new FileWriter(file);
-        template.process(dataModel, fileWriter);
+        template.process(entityData, fileWriter);
         fileWriter.close();
     }
 }

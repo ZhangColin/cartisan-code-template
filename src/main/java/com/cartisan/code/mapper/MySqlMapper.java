@@ -12,12 +12,13 @@ public interface MySqlMapper {
             "where table_schema = (select database())")
     List<String> getAllTableNames();
 
-    @Select("select table_name, table_comment " +
+    @Select("select table_name tableName, table_comment tableComment " +
             "from information_schema.tables " +
             "where table_schema = (select database()) and table_name = #{tableName}")
-    List<TableEntity> getTable(String tableName);
+    TableEntity getTable(String tableName);
 
-    @Select("select column_name, data_type, column_comment, column_key, extra " +
+    @Select("select column_name columnName, data_type dataType, " +
+            "   column_comment columnComment, column_key columnKey, extra " +
             "from information_schema.columns " +
             "where table_name = #{tableName} and table_schema = (select database()) " +
             "order by ordinal_position")
