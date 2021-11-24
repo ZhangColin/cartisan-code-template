@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class TemplateUtil {
     public static Template loadTemplate(String path, String ftl) throws IOException {
-        final Configuration configuration = new Configuration(Configuration.getVersion());
+        final Configuration configuration = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
         configuration.setDirectoryForTemplateLoading(new File(path));
         configuration.setDefaultEncoding("utf-8");
 

@@ -8,9 +8,9 @@ spring:
     password: truth
 
 code:
-  serviceName: 订单服务
-  package: com.cartisan.mall.order
-  tableNames:
-    - gds_brands
-    - gds_categories
+  serviceName: 商品服务
+  package: com.cartisan.mall.goods
+#  tableNames:
+#    - gds_brands
+#    - gds_categories
 

@@ -1,41 +1,41 @@
 ### 搜索${moduleName}
-GET http://{{host}}:{{port}}/${modules}/search?page=0&size=10
+GET http://{{host}}:{{port}}/${camelModules}/search?page=0&size=10
 Accept: application/json
 Content-Type: application/json;charset=UTF-8
 Authorization: {{auth_token}}
 
 ### 获取${moduleName}
-GET http://{{host}}:{{port}}/${modules}/1
+GET http://{{host}}:{{port}}/${camelModules}/1
 Accept: application/json
 Content-Type: application/json;charset=UTF-8
 Authorization: {{auth_token}}
 
 ### 添加${moduleName}
-POST http://{{host}}:{{port}}/${modules}
+POST http://{{host}}:{{port}}/${camelModules}
 Accept: application/json
 Content-Type: application/json;charset=UTF-8
 Authorization: {{auth_token}}
 
 {
   <#list fields as field>
-  <#if !field.id>"${field.camelName}": ""<#if field_has_next>,</#if></#if>
+  "${field.camelName}": ""<#if field_has_next>,</#if>
   </#list>
 }
 
 ### 编辑${moduleName}
-PUT http://{{host}}:{{port}}/${modules}/1
+PUT http://{{host}}:{{port}}/${camelModules}/1
 Accept: application/json
 Content-Type: application/json;charset=UTF-8
 Authorization: {{auth_token}}
 
 {
   <#list fields as field>
-  <#if !field.id>"${field.camelName}": ""<#if field_has_next>,</#if></#if>
+  "${field.camelName}": ""<#if field_has_next>,</#if>
   </#list>
 }
 
 ### 删除${moduleName}
-DELETE http://{{host}}:{{port}}/${modules}/1
+DELETE http://{{host}}:{{port}}/${camelModules}/1
 Accept: application/json
 Content-Type: application/json;charset=UTF-8
 Authorization: {{auth_token}}

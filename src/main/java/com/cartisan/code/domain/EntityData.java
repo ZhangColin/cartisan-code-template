@@ -25,8 +25,11 @@ public class EntityData {
     private String moduleName;
 
     private List<FieldData> fields;
+    private FieldData primaryKey;
 
     private Set<String> importTypes = new HashSet<>();
+
+    private String author = "colin";
 
 
     public EntityData(String serviceName, String packageName, TableEntity tableEntity, List<FieldData> fields) {
@@ -37,13 +40,14 @@ public class EntityData {
 
         this.camelModule = StringUtils.convertCamelModule(this.tableName);
         this.pascalModule = StringUtils.convertPascalModule(this.tableName);
-        this.camelModules = StringUtils.convertCamelModule(this.tableName);
+        this.camelModules = StringUtils.convertCamelModules(this.tableName);
         this.pascalModules = StringUtils.convertPascalModules(this.tableName);
 
         this.moduleName = tableEntity.getTableComment();
 
+        this.primaryKey = fields.stream().filter(FieldData::getPrimaryKey).findFirst().get();
         this.fields = fields.stream()
-                .filter(field->!asList("created", "updated", "active", "deleted").contains(field.getColumnName()))
+                .filter(field->!field.getPrimaryKey() && !asList("created", "updated", "active", "deleted").contains(field.getColumnName()))
                 .collect(toList());
     }
 }

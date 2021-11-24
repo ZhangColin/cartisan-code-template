@@ -17,9 +17,12 @@ import java.util.List;
 
 import static com.cartisan.response.ResponseUtil.success;
 
+/**
+* @author ${author}
+*/
 @Api(tags = "${serviceName}：${moduleName}")
 @RestController
-@RequestMapping("/${modules}")
+@RequestMapping("/${camelModules}")
 @Validated
 @Slf4j
 public class ${pascalModule}Controller {
@@ -31,10 +34,10 @@ public class ${pascalModule}Controller {
 
     @ApiOperation(value = "搜索${moduleName}")
     @GetMapping("/search")
-    public ResponseEntity<PageResult<${pascalModule}Dto>> search${Modules}(
+    public ResponseEntity<PageResult<${pascalModule}Dto>> search${camelModules}(
             @ApiParam(value = "查询参数") ${pascalModule}Query ${camelModule}Query,
-            @PageableDefault Pageable pageable) {
-        return success(service.search${Modules}(${camelModule}Query, pageable));
+            @PageableDefault(page=0, size=10) Pageable pageable) {
+        return success(service.search${camelModules}(${camelModule}Query, pageable));
     }
 
     @ApiOperation(value = "获取${moduleName}")

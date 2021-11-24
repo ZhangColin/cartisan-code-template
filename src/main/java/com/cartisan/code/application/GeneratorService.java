@@ -8,7 +8,6 @@ import com.cartisan.code.domain.FieldData;
 import com.cartisan.code.domain.TableEntity;
 import com.cartisan.code.mapper.MySqlMapper;
 import freemarker.template.TemplateException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -30,11 +29,9 @@ public class GeneratorService {
     }
 
     public void generateCode() throws TemplateException, IOException {
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
         List<String> tableNames = codeConfig.getTableNames();
-        if (codeConfig == null || tableNames.size() == 0) {
-            tableNames = mapper.getAllTableNames();
+        if (tableNames == null || tableNames.size() == 0) {
+            tableNames = mapper.getAllTableNames().stream().filter(tableName -> !tableName.startsWith("schema_")).collect(toList());
         }
 
         for (String tableName : tableNames) {
@@ -44,48 +41,50 @@ public class GeneratorService {
             final EntityData entityData =
                     new EntityData(codeConfig.getServiceName(), codeConfig.getPackageName(), table, columns.stream().map(FieldData::new).collect(toList()));
 
-//            BuilderFactory.builder(entityData, "/template/code", "Controller.java",
-//                    ("/"+ entityData.getPackageName()+"/"+ entityData.getPascalModule()).replace(".", "/").toLowerCase(),
-//                    "Controller.java");
-//
-//            BuilderFactory.builder(entityData, "/template/code", "AppService.java",
-//                    ("/"+ entityData.getPackageName()+"/"+ entityData.getPascalModule()).replace(".", "/").toLowerCase(),
-//                    "AppService.java");
-//
-//            BuilderFactory.builder(entityData, "/template/code", "Converter.java",
-//                    ("/"+ entityData.getPackageName()+"/"+ entityData.getPascalModule()).replace(".", "/").toLowerCase(),
-//                    "Converter.java");
-//
-//            BuilderFactory.builder(entityData, "/template/code", "DomainModel.java",
-//                    ("/"+ entityData.getPackageName()+"/"+ entityData.getPascalModule()).replace(".", "/").toLowerCase(),
-//                    ".java");
-//
-            BuilderFactory.builder(entityData, "/template/code", "Dto.java",
-                    ("/"+ entityData.getPackageName()+"/"+ entityData.getPascalModule()).replace(".", "/").toLowerCase(),
-                    "Dto.java");
-//
-//            BuilderFactory.builder(entityData, "/template/code", "Param.java",
-//                    ("/"+ entityData.getPackageName()+"/"+ entityData.getPascalModule()).replace(".", "/").toLowerCase(),
-//                    "Param.java");
-//
-//            BuilderFactory.builder(entityData, "/template/code", "Query.java",
-//                    ("/"+ entityData.getPackageName()+"/"+ entityData.getPascalModule()).replace(".", "/").toLowerCase(),
-//                    "Query.java");
-//
-//            BuilderFactory.builder(entityData, "/template/code", "Repository.java",
-//                    ("/"+ entityData.getPackageName()+"/"+ entityData.getPascalModule()).replace(".", "/").toLowerCase(),
-//                    "Repository.java");
+            BuilderFactory.builder(entityData, "/template/code", "Controller.java.ftl",
+                    ("/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    "Controller.java");
 
-//            BuilderFactory.builder(entityData, "/template/api", "Api.http",
-//                    ("/api/"+modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
-//                    ".Http");
-//
-//            BuilderFactory.builder(entityData, "/template/vue", "UI.vue",
-//                    ("/vue/"+ modelMap.get("package")+"/"+ modelMap.get("module")).replace(".", "/").toLowerCase(),
-//                    ".vue");
+            BuilderFactory.builder(entityData, "/template/code", "AppService.java.ftl",
+                    ("/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    "AppService.java");
+
+            BuilderFactory.builder(entityData, "/template/code", "Converter.java.ftl",
+                    ("/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    "Converter.java");
+
+            BuilderFactory.builder(entityData, "/template/code", "DomainModel.java.ftl",
+                    ("/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    ".java");
+
+            BuilderFactory.builder(entityData, "/template/code", "Dto.java.ftl",
+                    ("/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    "Dto.java");
+
+            BuilderFactory.builder(entityData, "/template/code", "Param.java.ftl",
+                    ("/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    "Param.java");
+
+            BuilderFactory.builder(entityData, "/template/code", "Query.java.ftl",
+                    ("/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    "Query.java");
+
+            BuilderFactory.builder(entityData, "/template/code", "Repository.java.ftl",
+                    ("/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    "Repository.java");
+
+            BuilderFactory.builder(entityData, "/template/api", "Api.http",
+                    ("/api/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    ".Http");
+
+            BuilderFactory.builder(entityData, "/template/vue", "List.vue.ftl",
+                    ("/vue/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    ".vue");
+
+            BuilderFactory.builder(entityData, "/template/vue", "Form.vue.ftl",
+                    ("/vue/" + entityData.getPackageName() + "/" + entityData.getPascalModule()).replace(".", "/").toLowerCase(),
+                    "Form.vue");
         }
 
-//        IOUtils.closeQuietly(zipOutputStream);
-//        return outputStream.toByteArray();
     }
 }
