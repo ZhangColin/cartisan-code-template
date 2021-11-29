@@ -16,8 +16,23 @@
       border
       fit
       highlight-current-row
-    ><#list fields as field>
-      <el-table-column align="center" label="${field.description}" prop="${field.camelName}" /></#list>
+    ><#list fields as field><#if field.isBoolean>
+      <el-table-column align="center" label="${field.title}" prop="${field.camelName}">
+        <template slot-scope="scope">
+          <el-switch
+            v-model="scope.row.${field.camelName}"
+            :active-value="true"
+            :inactive-value="false"
+            disabled
+          />
+        </template>
+      </el-table-column><#elseif field.isEnum>
+      <el-table-column align="center" label="${field.title}" prop="${field.camelName}" >
+        <template slot-scope="scope">
+          <span>{{ ({<#list field.enumValues as enumValue>${enumValue.code}:'${enumValue.description}'<#if enumValue_has_next>,</#if></#list>})[scope.row.${field.camelName}] }}</span>
+        </template>
+      </el-table-column><#else>
+      <el-table-column align="center" label="${field.title}" prop="${field.camelName}" /></#if></#list>
       <el-table-column align="center" label="操作" width="120">
         <template slot-scope="scope">
           <el-dropdown split-button @click="handleEdit( scope.row)">
