@@ -16,7 +16,8 @@
       border
       fit
       highlight-current-row
-    ><#list fields as field><#if field.isBoolean>
+    >
+      <el-table-column align="center" label="${primaryKey.title}" prop="${primaryKey.camelName}" /><#list fields as field><#if field.isBoolean>
       <el-table-column align="center" label="${field.title}" prop="${field.camelName}">
         <template slot-scope="scope">
           <el-switch

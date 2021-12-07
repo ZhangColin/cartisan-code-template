@@ -55,7 +55,7 @@ public class FieldData {
 
         this.require = columnEntity.getIsNullable().equals("NO");
         this.maxLength = org.springframework.util.StringUtils.hasLength(columnEntity.getMaxLength()) ? Long.parseLong(columnEntity.getMaxLength()) : 0L;
-        this.maxValid = this.maxLength > 0 && this.maxLength < 256;
+        this.maxValid = this.maxLength > 0 && this.maxLength <= 256;
         this.needValid = this.require || this.maxValid;
 
         this.isNumber = asList("Integer", "Float", "Double", "BigDecimal").contains(this.type);

@@ -32,8 +32,8 @@ public class ${pascalModule} extends AbstractEntity implements AggregateRoot {
     </#list>
     protected ${pascalModule}() {}
 
-    public ${pascalModule}(<#if !primaryKey.autoIncrement>Long id,</#if> <#list fields as field>${field.type} ${field.camelName}<#if field_has_next>, </#if></#list>) {
-        <#if !primaryKey.autoIncrement>this.id = id;</#if>
+    public ${pascalModule}(<#if !primaryKey.autoIncrement>Long id, </#if><#list fields as field>${field.type} ${field.camelName}<#if field_has_next>, </#if></#list>) {<#if !primaryKey.autoIncrement>
+        this.id = id;</#if>
         <#list fields as field>
         this.${field.camelName} = ${field.camelName};
         </#list>

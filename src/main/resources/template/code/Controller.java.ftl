@@ -36,7 +36,7 @@ public class ${pascalModule}Controller {
     @GetMapping("/search")
     public ResponseEntity<PageResult<${pascalModule}Dto>> search${camelModules}(
             @ApiParam(value = "查询参数") ${pascalModule}Query ${camelModule}Query,
-            @PageableDefault(page=0, size=10) Pageable pageable) {
+    @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return success(service.search${camelModules}(${camelModule}Query, pageable));
     }
 

@@ -18,7 +18,7 @@ Authorization: {{auth_token}}
 
 {
   <#list fields as field>
-  "${field.camelName}": ""<#if field_has_next>,</#if>
+  "${field.camelName}": <#if field.isNumber || field.isBoolean>${field.defaultValue}<#else>"${field.defaultValue}"</#if><#if field_has_next>,</#if>
   </#list>
 }
 
@@ -30,7 +30,7 @@ Authorization: {{auth_token}}
 
 {
   <#list fields as field>
-  "${field.camelName}": ""<#if field_has_next>,</#if>
+  "${field.camelName}": <#if field.isNumber || field.isBoolean>${field.defaultValue}<#else>"${field.defaultValue}"</#if><#if field_has_next>,</#if>
   </#list>
 }
 

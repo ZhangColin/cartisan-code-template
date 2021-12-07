@@ -24,6 +24,7 @@ import static java.util.stream.Collectors.toList;
 * @author ${author}
 */
 @Service
+@Slf4j
 public class ${pascalModule}AppService {
     private final ${pascalModule}Repository repository;
     <#if !primaryKey.autoIncrement>
@@ -53,8 +54,8 @@ public class ${pascalModule}AppService {
 
     @Transactional(rollbackOn = Exception.class)
     public ${pascalModule}Dto add${pascalModule}(@NonNull ${pascalModule}Param ${camelModule}Param) {
-        final ${pascalModule} ${camelModule} = new ${pascalModule}(
-            <#if !primaryKey.autoIncrement>idWorker.nextId(),</#if><#list fields as field>
+        final ${pascalModule} ${camelModule} = new ${pascalModule}(<#if !primaryKey.autoIncrement>
+            idWorker.nextId(),</#if><#list fields as field>
             ${camelModule}Param.get${field.pascalName}()<#if field_has_next>, </#if></#list>);
 
         return converter.convert(repository.save(${camelModule}));
