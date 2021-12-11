@@ -14,7 +14,7 @@
             :inactive-value="false"
           /><#elseif field.isEnum>
           <el-select v-model="entityData.${field.camelName}" placeholder="请选择${field.title}"><#list field.enumValues as enumValue>
-            <el-option label="${enumValue.description}" value="${enumValue.code}"></el-option></#list>
+            <el-option label="${enumValue.description}" :value="${enumValue.code}"></el-option></#list>
           </el-select><#elseif field.isNumber>
           <el-input-number v-model="entityData.${field.camelName}" /><#elseif field.isDate>
           <el-date-picker type="date" placeholder="选择日期" v-model="entityData.${field.camelName}" style="width: 100%;"></el-date-picker><#elseif field.isDateTime>

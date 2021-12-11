@@ -33,6 +33,7 @@ public class FieldData {
     private Boolean needValid;
 
     private Boolean isNumber;
+    private Boolean isLong;
     private Boolean isBoolean;
     private Boolean isDate;
     private Boolean isDateTime;
@@ -58,7 +59,8 @@ public class FieldData {
         this.maxValid = this.maxLength > 0 && this.maxLength <= 256;
         this.needValid = this.require || this.maxValid;
 
-        this.isNumber = asList("Integer", "Float", "Double", "BigDecimal").contains(this.type);
+        this.isNumber = asList("Integer", "Float", "Long", "Double", "BigDecimal").contains(this.type);
+        this.isLong = "Long".equals(this.type);
         this.isBoolean = this.type.equals("Boolean");
         this.isDate = this.type.equals("LocalDate");
         this.isDateTime = this.type.equals("LocalDateTime");

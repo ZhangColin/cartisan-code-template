@@ -8,11 +8,11 @@ import lombok.Data;
  */
 @Data
 public class ${pascalModule}Dto {
-    @ApiModelProperty(value = "${primaryKey.description}")
+    @ApiModelProperty(value = "${primaryKey.title}")
     private Long id;
 
     <#list fields as field>
-    @ApiModelProperty(value = "${field.description}")
+    @ApiModelProperty(value = "${field.title}")
     private ${field.type} ${field.camelName};
 
     </#list>

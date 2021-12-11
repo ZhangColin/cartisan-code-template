@@ -34,10 +34,10 @@ public class ${pascalModule}Controller {
 
     @ApiOperation(value = "搜索${moduleName}")
     @GetMapping("/search")
-    public ResponseEntity<PageResult<${pascalModule}Dto>> search${camelModules}(
+    public ResponseEntity<PageResult<${pascalModule}Dto>> search${pascalModules}(
             @ApiParam(value = "查询参数") ${pascalModule}Query ${camelModule}Query,
-    @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        return success(service.search${camelModules}(${camelModule}Query, pageable));
+            @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        return success(service.search${pascalModules}(${camelModule}Query, pageable));
     }
 
     @ApiOperation(value = "获取${moduleName}")

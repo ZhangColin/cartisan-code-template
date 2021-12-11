@@ -4,6 +4,7 @@ import com.cartisan.constant.CodeMessage;
 import com.cartisan.dto.PageResult;
 import com.cartisan.exception.CartisanException;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -40,7 +41,7 @@ public class ${pascalModule}AppService {
         </#if>
     }
 
-    public PageResult<${pascalModule}Dto> search${camelModules}(@NonNull ${pascalModule}Query ${camelModule}Query, @NonNull Pageable pageable) {
+    public PageResult<${pascalModule}Dto> search${pascalModules}(@NonNull ${pascalModule}Query ${camelModule}Query, @NonNull Pageable pageable) {
         final Page<${pascalModule}> searchResult = repository.findAll(querySpecification(${camelModule}Query),
                 PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 

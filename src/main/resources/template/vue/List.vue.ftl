@@ -73,7 +73,8 @@
     mixins: [PaginationMixin, DeleteMixin],
     data() {
       return {
-        apiBaseUrl: '/${camelModules}'
+        apiBaseUrl: '/${camelModules}',
+        title: '${moduleName}'
       }
     },
     created() {
